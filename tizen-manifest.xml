@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="org.geargotchi.game" version="1.0.0">
+    <profile name="wearable"/>
+    <service-application appid="org.geargotchi.game.service" auto-restart="false" exec="geargotchiservice" multiple="false" nodisplay="true" on-boot="false" taskmanage="false" type="capp">
+        <label>FittyMon Service</label>
+        <icon>geargotchiservice.png</icon>
+    </service-application>
+    <privileges>
+        <privilege>http://tizen.org/privilege/healthinfo</privilege>
+        <privilege>http://tizen.org/privilege/haptic</privilege>
+        <privilege>http://tizen.org/privilege/notification</privilege>
+        <privilege>http://tizen.org/privilege/display</privilege>
+    </privileges>
+    <feature name="http://tizen.org/feature/sensor.pedometer">true</feature>
+</manifest>
