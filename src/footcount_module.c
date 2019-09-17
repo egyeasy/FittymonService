@@ -51,22 +51,24 @@ int call = 0;
 static bool
 footcount_module_sensor_recorder_callback(sensor_type_e type, sensor_recorder_data_h data, int remains, sensor_error_e error, void *user_data)
 {
-	call++;
 	int step;
 	time_t start;
 	time_t end;
 
-	if (error != SENSOR_ERROR_NONE) return false;
+	if (error != SENSOR_ERROR_NONE) return;
 
 	sensor_recorder_data_get_time(data, &start, &end);
 
 	sensor_recorder_data_get_int(data, SENSOR_RECORDER_DATA_STEPS, &step);
 
-	// TODO: comment below line to test without walking
-	STEPS = step;
-	dlog_print(DLOG_DEBUG, "RACCOON", "steps: %d. call: %d", step, call);
-
-	return true;
+	static int steps = 0;
+	steps += step;
+	if (remains == 0)
+	{
+	    STEPS = steps;
+	    steps = 0;
+	}
+	dlog_print(DLOG_DEBUG, "RACCOON", "3 %d", step);
 }
 
 
